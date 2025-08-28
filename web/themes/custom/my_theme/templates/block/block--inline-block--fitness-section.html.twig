@@ -1,0 +1,132 @@
+{#
+/**
+ * @file
+ * Theme override to display a block.
+ *
+ * Available variables:
+ * - plugin_id: The ID of the block implementation.
+ * - label: The configured label of the block if visible.
+ * - configuration: A list of the block's configuration values.
+ *   - label: The configured label for the block.
+ *   - label_display: The display settings for the label.
+ *   - provider: The module or other provider that provided this block plugin.
+ *   - Block plugin specific settings will also be stored here.
+ * - in_preview: Whether the plugin is being rendered in preview mode.
+ * - content: The content of this block.
+ * - attributes: array of HTML attributes populated by modules, intended to
+ *   be added to the main container tag of this template.
+ *   - id: A valid HTML ID and guaranteed unique.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ *
+ * @see template_preprocess_block()
+ */
+#}
+<div{{ attributes }}>
+  {{ title_prefix }}
+  {% if label %}
+    <h2{{ title_attributes }}>{{ label }}</h2>
+  {% endif %}
+  {{ title_suffix }}
+  {% block content %}
+        <div class="container-fluid goal pt-5">
+            <div class="container pt-5">
+                <div class="row g-5">
+                    <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.2s">
+                        <div class="goal-content">
+                            <h4 class="text-primary">{{ content.field_fitness_title.0 }}</h4>
+                            <h1 class="display-4 mb-4">{{ content.field_fitness_heading.0 }}</h1>
+                            <div class="goal-item d-flex p-4">
+                                <div class="d-flex me-4">
+                                    <div class="bg-primary d-inline p-3" style="width: 80px; height: 80px;">
+                                        {% if content.field_fitness_icon_1 is not empty %}
+                                        {% set media = content.field_fitness_icon_1['#items'].entity %}
+                                        {% set image = media.field_media_image.entity %}
+                                        <img 
+                                            src="{{ file_url(image.uri.value) }}" 
+                                            class="img-fluid"
+                                            style="object-fit: cover;"
+                                            alt="{{ media.field_media_image.alt }}" />
+                                        {% endif %}							
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4>{{ content.field_description_heading_1.0}}</h4>
+                                    <p class="text-white mb-0">{{ content.field_description_1.0 }}</p>
+                                </div>
+                            </div>
+                            <div class="goal-item d-flex p-4 mb-4">
+                                <div class="d-flex me-4">
+                                    <div class="bg-primary d-inline p-3" style="width: 80px; height: 80px;">
+                                        {% if content.field_fitness_icon_2 is not empty %}
+                                        {% set media = content.field_fitness_icon_2['#items'].entity %}
+                                        {% set image = media.field_media_image.entity %}
+                                        <img 
+                                            src="{{ file_url(image.uri.value) }}" 
+                                            class="img-fluid"
+                                            style="object-fit: cover;"
+                                            alt="{{ media.field_media_image.alt }}" />
+                                        {% endif %}		                                    </div>
+                                </div>
+                                <div>
+                                    <h4>{{ content.field_description_heading_2.0}}</h4>
+                                    <p class="text-white mb-0">{{ content.field_description_2.0 }}</p>
+                                </div>
+                            </div>
+                            <div class="ms-1">
+                                <span class="btn btn-primary py-3 px-5 ms-2"> {{content.field_read_details}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.2s">
+                        <div class="h-100">
+                        		{% if content.field_fitness_image is not empty %}
+								{% set media = content.field_fitness_image['#items'].entity %}
+								{% set image = media.field_media_image.entity %}
+								<img 
+									src="{{ file_url(image.uri.value) }}" 
+									class="img-fluid w-100"
+									style="object-fit: cover;"
+									alt="{{ media.field_media_image.alt }}" />
+								{% endif %}							
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  {% endblock %}
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            

@@ -1,0 +1,74 @@
+{#
+/**
+ * @file
+ * Theme override to display a block.
+ *
+ * Available variables:
+ * - plugin_id: The ID of the block implementation.
+ * - label: The configured label of the block if visible.
+ * - configuration: A list of the block's configuration values.
+ *   - label: The configured label for the block.
+ *   - label_display: The display settings for the label.
+ *   - provider: The module or other provider that provided this block plugin.
+ *   - Block plugin specific settings will also be stored here.
+ * - in_preview: Whether the plugin is being rendered in preview mode.
+ * - content: The content of this block.
+ * - attributes: array of HTML attributes populated by modules, intended to
+ *   be added to the main container tag of this template.
+ *   - id: A valid HTML ID and guaranteed unique.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ *
+ * @see template_preprocess_block()
+ */
+#}
+<div{{ attributes }}>
+  {{ title_prefix }}
+  {% if label %}
+    <h2{{ title_attributes }}>{{ label }}</h2>
+  {% endif %}
+  {{ title_suffix }}
+  <div class="header-carousel owl-carousel owl-theme overflow-hidden bg-dark">
+    {% for item in content.field_slider['#items'] %}
+      {% set paragraph = item.entity %}
+      <div class="header-carousel-item hero-section">
+        <div class="hero-bg-half-{{ loop.index }}"></div>
+        <div class="carousel-caption">
+          <div class="container">
+            <div class="row g-4 align-items-center">
+              <div class="col-lg-7 animated fadeInLeft">
+                <div class="text-sm-center text-md-start">
+                  {% if paragraph.field_title.value %}
+                    <h4 class="text-primary text-uppercase fw-bold mb-4">{{ paragraph.field_title.value }}</h4>
+                  {% endif %}
+                  {% if paragraph.field_heading.value %}
+                    <h1 class="display-1 text-white mb-4">{{ paragraph.field_heading.value }}</h1>
+                  {% endif %}
+                  {% if paragraph.field_description.value %}
+                    <p class="mb-5 fs-5">{{ paragraph.field_description.value|raw }}</p>
+                  {% endif %}
+                  <div class="d-flex justify-content-center justify-content-md-start flex-shrink-0 mb-4">
+                    {% if paragraph.field_watch_video[0] is defined %}
+                      <a class="btn btn-dark py-3 px-4 px-md-5 me-2" href="{{ paragraph.field_watch_video.0.url }}">
+                        <i class="fas fa-play-circle me-2"></i>{{ paragraph.field_watch_video.0.title }}
+                      </a>
+                    {% endif %}
+                    {% if paragraph.field_learn_more[0] is defined %}
+                      <a class="btn btn-primary py-3 px-4 px-md-5 ms-2" href="{{ paragraph.field_learn_more.0.url }}">
+                        {{ paragraph.field_learn_more.0.title }}
+                      </a>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>

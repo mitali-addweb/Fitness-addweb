@@ -1,0 +1,144 @@
+{#
+/**
+ * @file
+ * Theme override to display a block.
+ *
+ * Available variables:
+ * - plugin_id: The ID of the block implementation.
+ * - label: The configured label of the block if visible.
+ * - configuration: A list of the block's configuration values.
+ *   - label: The configured label for the block.
+ *   - label_display: The display settings for the label.
+ *   - provider: The module or other provider that provided this block plugin.
+ *   - Block plugin specific settings will also be stored here.
+ * - in_preview: Whether the plugin is being rendered in preview mode.
+ * - content: The content of this block.
+ * - attributes: array of HTML attributes populated by modules, intended to
+ *   be added to the main container tag of this template.
+ *   - id: A valid HTML ID and guaranteed unique.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ *
+ * @see template_preprocess_block()
+ */
+#}
+<div{{attributes}}>
+	{{ title_prefix }}
+	{% if label %}
+		<h2{{title_attributes}}>{{ label }}</h2>
+	{% endif %}
+	{{ title_suffix }}
+	{% block content %}
+		<div class="container-fluid about pt-5">
+			<div class="container pt-5">
+				<div class="row g-5">
+					<div class="col-xl-6 wow fadeInLeft" data-wow-delay="0.2s">
+						<div class="about-content h-100">
+							<h4 class="text-primary">{{ content.field_title.0 }}</h4>
+							<h1 class="display-4 text-white mb-4">{{ content.field_heading.0 }}</h1>
+							<p class="mb-4">{{ content.field_description.0 }}</p>
+							<div class="tab-class pb-4">
+								<ul class="nav d-flex mb-2">
+									<li class="nav-item mb-3">
+										<a class="d-flex py-2 active" data-bs-toggle="pill" href="#tab-1">
+											<span style="width: 150px;">{{ content.field_our_mission.0 }}</span>
+										</a>
+									</li>
+									<li class="nav-item mb-3">
+										<a class="d-flex py-2 mx-3" data-bs-toggle="pill" href="#tab-2">
+											<span style="width: 150px;">{{ content.field_our_vision.0 }}</span>
+										</a>
+									</li>
+									<li class="nav-item mb-3">
+										<a class="d-flex py-2" data-bs-toggle="pill" href="#tab-3">
+											<span style="width: 150px;">{{ content.field_our_goal.0 }}</span>
+										</a>
+									</li>
+								</ul>
+								<div class="tab-content">
+									<div id="tab-1" class="tab-pane fade show p-0 active">
+										<div class="row">
+											<div class="col-12">
+												<div class="d-flex align-items-center border-top border-bottom py-4">
+													<span class="fas fa-rocket text-white fa-4x me-4"></span>
+													<p class="mb-0">{{ content.field_our_mission_description.0 }}
+													</p>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div id="tab-2" class="tab-pane fade show p-0">
+										<div class="row">
+											<div class="col-12">
+												<div class="d-flex align-items-center border-top border-bottom py-4">
+													<span class="fas fa-rocket text-white fa-4x me-4"></span>
+													<p class="mb-0">
+														{{ content.field_our_vision_description.0 }}
+													</p>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div id="tab-3" class="tab-pane fade show p-0">
+										<div class="row">
+											<div class="col-12">
+												<div class="d-flex align-items-center border-top border-bottom py-4">
+													<span class="fas fa-rocket text-white fa-4x me-4"></span>
+													<p class="mb-0">
+														{{ content.field_our_goal_description.0 }}
+													</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row g-4 align-items-center">
+								<div class="col-sm-6">
+										<span class="btn btn-primary py-3 px-5">{{ content.field_make_appointment.0}}</span>
+								</div>
+								<div class="col-sm-6">
+									<div class="d-flex flex-shrink-0 ps-4">
+										<a href="#" class="btn btn-light btn-lg-square position-relative wow tada" data-wow-delay=".9s">
+											<i class="fa fa-phone-alt fa-2x"></i>
+											<div class="position-absolute" style="top: 5px; right: 5px;">
+												<span>
+													<i class="fa fa-comment-dots text-dark"></i>
+												</span>
+											</div>
+										</a>
+										<div class="d-flex flex-column ms-3">
+											<span>{{ content.field_call.0 }}</span>
+											<a href="tel:{{ content.field_phone.0}}">
+												<span class="text-white">Free:{{ content.field_phone.0}}</span>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-6 wow fadeInUp" data-wow-delay="0.2s">
+						<div class="about-img h-100">
+							<div class="about-img-inner d-flex h-100">
+								{% if content.field_about_image is not empty %}
+								{% set media = content.field_about_image['#items'].entity %}
+								{% set image = media.field_media_image.entity %}
+								<img 
+									src="{{ file_url(image.uri.value) }}" 
+									class="img-fluid w-100"
+									style="object-fit: cover;"
+									alt="{{ media.field_media_image.alt }}" />
+								{% endif %}							
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endblock %}
+</div>

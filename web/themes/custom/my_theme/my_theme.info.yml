@@ -1,0 +1,12 @@
+name: 'My Theme'
+description: 'This is my custom theme.'
+base theme: stable9
+core_version_requirement: ^10
+type: theme
+regions:
+    header: Header
+    content: Content
+    footer: Footer
+libraries:
+  - my_theme/global-styling
+  - my_theme/global-scripts

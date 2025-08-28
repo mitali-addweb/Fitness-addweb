@@ -1,0 +1,92 @@
+<?php
+
+function my_theme_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
+{
+
+    if ($form_id == 'webform_submission_contact_form_node_11_add_form') {
+
+        $form['#attributes']['class'][] = 'row g-4';
+
+        if (isset($form['elements']['name'])) {
+            $field = &$form['elements']['name'];
+
+            $field['#prefix'] = '<div class="col-lg-12 col-xl-6"><div class="form-floating form-section-col">';
+            $field['#suffix'] = '</div></div>';
+
+            $field['#attributes']['class'][] = 'form-control';
+            $field['#attributes']['class'][] = 'border-0';
+        }
+
+        if (isset($form['elements']['email'])) {
+            $field = &$form['elements']['email'];
+
+            $field['#prefix'] = '<div class="col-lg-12 col-xl-6"><div class="form-floating form-section-col">';
+            $field['#suffix'] = '</div></div>';
+
+            $field['#attributes']['class'][] = 'form-control';
+            $field['#attributes']['class'][] = 'border-0';
+        }
+
+        if (isset($form['elements']['telephone'])) {
+            $field = &$form['elements']['telephone'];
+
+            $field['#prefix'] = '<div class="col-lg-12 col-xl-6"><div class="form-floating form-section-col">';
+            $field['#suffix'] = '</div></div>';
+
+            $field['#attributes']['class'][] = 'form-control';
+            $field['#attributes']['class'][] = 'border-0';
+        }
+
+        if (isset($form['elements']['project'])) {
+            $field = &$form['elements']['project'];
+
+            $field['#prefix'] = '<div class="col-lg-12 col-xl-6"><div class="form-floating form-section-col">';
+            $field['#suffix'] = '</div></div>';
+
+            $field['#attributes']['class'][] = 'form-control';
+            $field['#attributes']['class'][] = 'border-0';
+        }
+
+        if (isset($form['elements']['subject'])) {
+            $field = &$form['elements']['subject'];
+
+            $field['#prefix'] = '<div class="col-12"><div class="form-floating form-section-col">';
+            $field['#suffix'] = '</div></div>';
+
+            $field['#attributes']['class'][] = 'form-control';
+            $field['#attributes']['class'][] = 'border-0';
+        }
+
+        if (isset($form['elements']['message'])) {
+            $field = &$form['elements']['message'];
+
+            $field['#prefix'] = '<div class="col-12"><div class="form-floating">';
+            $field['#suffix'] = '</div></div>';
+
+            $field['#attributes']['class'][] = 'form-control';
+            $field['#attributes']['class'][] = 'border-0';
+        }
+
+        if (isset($form['elements']['terms_and_condition'])) {
+            $field = &$form['elements']['terms_and_condition'];
+
+            $field['#prefix'] = '<div class="col-12"><div class="form-check">';
+            $field['#suffix'] = '</div></div>';
+
+            $field['#attributes']['class'][] = 'form-check-input';
+            $field['#attributes']['class'][] = 'border-0';
+        }
+
+        if (isset($form['actions']['submit'])) {
+            $submit = &$form['actions']['submit'];
+
+            $submit['#prefix'] = '<div class="col-12"><div class="form-section-col">';
+            $submit['#suffix'] = '</div></div>';
+
+            $submit['#attributes']['class'][] = 'btn-primary';
+            $submit['#attributes']['class'][] = 'w-100';
+            $submit['#attributes']['class'][] = 'py-3';
+            $submit['#attributes']['class'][] = 'px-5';
+        }
+    }
+}
